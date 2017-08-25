@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+  <head>
+	<title>PWA Push Test</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="manifest" href=".manifest/manifest.json">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css" >
+	<!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="scripts/jquery-3.1.1.min.js"></script>
+    <script src="scripts/tether.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+ 
+	<!--pwa js-->
+	<script src="scripts/app.js?20170825" async></script>
+	
+	<!--push-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<link rel="stylesheet" href="styles/index.css">
+	<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	
+	<!-- Add to home screen for Safari on iOS -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Weather App">
+	<link rel="apple-touch-icon" href="images/icon/ZMH.png">
+
+	<!--Izooto API Add-->
+	<script> window._izq = window._izq || []; window._izq.push(["init"]); </script>
+	<script src="https://cdn.izooto.com/scripts/728b2f06af916e48ae00ec5752b87b044e91445f.js"></script>
+  </head>
+  <body>
+	<div>
+		<nav class="navbar navbar-light bg-faded">
+			<a class="navbar-brand" href="#">
+				<img src="images/Logo/ZMH.svg" width="70" height="50" class="d-inline-block" alt="....">
+				<font>PWA by Bootstrap4</font>
+				
+			</a>
+		</nav>
+	</div>
+	
+	<main>
+	
+	
+	<div>
+		<font id="ServiceInfo"><p></font>
+	</div>
+	
+	<div>
+		<font id="showProtocol">判斷User Protocol中 ...<p></font>
+	</div>
+	
+	<div>
+		<font id="LoginStatus">  </font>
+		<button type="button" id="btn1" class="btn btn-outline-primary btn-sm" onclick= "">連線中....</button><p>
+	</div>
+	
+	
+	<p>
+		<font id="SubStatus">  </font>
+	    <button type="button" id="btn2" class="btn btn-outline-info btn-sm" onclick= "" >
+			<font id="SubscribeStatus" >如欲使用推播功能,請登入FB後進行訂閱.</font>
+	    </button>	
+	</p>
+	<section class="subscription-details js-subscription-details is-invisible">
+	  <p>首次訂閱將取得訂閱資訊.</p>
+	  如需要請將此記錄下了.
+	  當畫面重整將不再重新顯示.</p>
+	  <pre><code class="js-subscription-json"></code></pre>
+	</section>
+    </main>
+	
+	
+	<div id="status"></div>
+	<!--FB Root-->
+	<div id="fb-root"></div>
+  </body>
+</html>
+<script>
+var showText = '';
+var ishttps = 'https:' == document.location.protocol ? true: false;  
+if(ishttps){  
+	showText = '目前使用的Protocol為：https';
+}else{  
+	showText = '目前使用的Protocol為：http';
+} 
+
+$('#showProtocol').text(showText);
+</script>

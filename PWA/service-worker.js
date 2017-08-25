@@ -1,3 +1,5 @@
+//iZooto API add
+var randomnumber=Math.random()*5;importScripts('https://cdn.izooto.com/scripts/workers/728b2f06af916e48ae00ec5752b87b044e91445f.js?'+randomnumber);
 // Copyright 2016 Google Inc.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,7 +13,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+'use strict';
 var dataCacheName = 'PWACase-v2';
 var cacheName = 'PWACase-v2';
 var filesToCache = [
@@ -22,7 +24,7 @@ var filesToCache = [
     '/scripts/tether.min.js',
 	 '/scripts/bootstrap.min.js',
   '/styles//bootstrap.min.css',
-  '/images/MyPtr/ZMH.svg',
+  '/images/Logo/ZMH.svg',
 ];
 
 self.addEventListener('install', function(e) {
@@ -91,4 +93,29 @@ self.addEventListener('fetch', function(e) {
       })
     );
   }
+});
+
+/*push*/
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push Received.');
+  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+
+  const title = 'Hi';
+  const options = {
+    body: '這是透過官方的方法觸發Push發送的',
+    icon: 'images/push-icon.png',
+    badge: 'images/push-badge.png'
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('[Service Worker] Notification click Received.');
+
+  event.notification.close();
+
+  event.waitUntil(
+    clients.openWindow('https://developers.google.com/web/')
+  );
 });
