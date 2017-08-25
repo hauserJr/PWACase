@@ -1,5 +1,4 @@
-//iZooto API add
-var randomnumber=Math.random()*5;importScripts('https://cdn.izooto.com/scripts/workers/728b2f06af916e48ae00ec5752b87b044e91445f.js?'+randomnumber);
+
 // Copyright 2016 Google Inc.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -102,7 +101,7 @@ self.addEventListener('push', function(event) {
 
   const title = 'Hi';
   const options = {
-    body: '這是透過官方的方法觸發Push發送的',
+    body: `"${event.data.text()}"`,
     icon: 'images/push-icon.png',
     badge: 'images/push-badge.png'
   };

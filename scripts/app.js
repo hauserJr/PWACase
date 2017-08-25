@@ -122,7 +122,7 @@ function testAPI() {
 /**Push Notifications codelab**/
 'use strict';
 
-const applicationServerPublicKey = 'BLx0gtjJRkNuQ3zFTJoYWE6TmcK4FVLbLCat31tIvIJbdoKmOQsKhPUL0X9iWH33FlXa4h1Ck7XM7qBjdomw2i4';
+const applicationServerPublicKey = 'BG-xv0VwfUuAiql4SOPWcTSSWb1dQ20J1NIWkkevm6r2qFNQ1oRVZxlVlvQZd2lf0xoDLgGeKD9gR6sBUQPuMak';
 const pushButton = document.querySelector('.js-push-btn');
 let isSubscribed = false;
 let swRegistration = null;
