@@ -262,10 +262,15 @@ function unsubscribe(){
 	$('#btn2').attr('onclick','unsubscribeUser();');
 }
 function subscribe(){
-	$('#btn2').text('訂閱');
-	$('#btn2').removeClass('disabled');
-	$('#btn2').attr('onclick','subscribeUser();');
-	disablePushUserInfo();
+	
+	if (NoSup){
+		 $('#SubStatus').text('網站訂閱狀態：不支援推播');
+	} else {
+		$('#btn2').text('訂閱');
+		$('#btn2').removeClass('disabled');
+		$('#btn2').attr('onclick','subscribeUser();');
+		disablePushUserInfo();
+	}
 }
 
 function FBLoginStatus_Btn(){
