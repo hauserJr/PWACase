@@ -13,7 +13,6 @@ if('serviceWorker' in navigator && 'PushManager' in window) {
 	} else {
 		console.warn('Push messaging is not supported');
 		NoSup = true;
-		$('#SubscribeStatus').text('不支援推播');
 		//pushButton.textContent = 'Push messaging is not supported';
 }
 
@@ -262,7 +261,6 @@ function unsubscribe(){
 	$('#btn2').attr('onclick','unsubscribeUser();');
 }
 function subscribe(){
-	
 	if (NoSup){
 		 $('#SubStatus').text('網站訂閱狀態：不支援推播');
 	} else {
