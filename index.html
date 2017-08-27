@@ -15,14 +15,7 @@
     <script src="scripts/bootstrap.min.js"></script>
  
 	<!--pwa js-->
-	<script src="scripts/app.js?20170825" async></script>
-	
-	<!--push-->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
-	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-	<link rel="stylesheet" href="styles/index.css">
-	<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script src="scripts/app.js?20170827" async></script>
 	
 	<!-- Add to home screen for Safari on iOS -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,16 +23,20 @@
 	<meta name="apple-mobile-web-app-title" content="Weather App">
 	<link rel="apple-touch-icon" href="images/icon/ZMH.png">
 
+	<!--Google Code show-->
+	<script src="CodeShow/run_prettify.js"></script>
 
   </head>
   <body>
+  	<!--FB Root-->
+	<div id="fb-root"></div>
+	
 	<div>
-		<nav class="navbar navbar-light bg-faded">
-			<a class="navbar-brand" href="#">
-				<img src="images/Logo/ZMH.svg" width="70" height="50" class="d-inline-block" alt="....">
-				<font>PWA by Bootstrap4</font>
-				
-			</a>
+		<nav class="navbar navbar-light bg-faded justify-content-between">		  
+		  <a class="navbar-brand">
+			<img src="images/Logo/ZMH.svg" width="70" class="d-inline-block" alt="....">
+			<img id = "Welbcome" src="" width="200" class="d-inline-block" alt="....">
+		  </a>
 		</nav>
 	</div>
 	
@@ -56,7 +53,11 @@
 	
 	<div>
 		<font id="LoginStatus">  </font>
-		<button type="button" id="btn1" class="btn btn-outline-primary btn-sm" onclick= "">連線中....</button><p>
+			<!-- <button type="button" src="" id="btn1" class="btn btn-link btn-sm" onclick= ""> -->
+				<img id="btn1" src="" alt="連線中..." width="90" height="40" onclick= ""/>
+				<font id = "connectionStr"></font>
+			<!-- </button> -->
+			<p>
 	</div>
 	
 	
@@ -66,18 +67,18 @@
 			<font id="SubscribeStatus" >如欲使用推播功能,請登入FB後進行訂閱.</font>
 	    </button>	
 	</p>
-	<section class="subscription-details js-subscription-details is-invisible">
-	  <p>首次訂閱將取得訂閱資訊.</p>
-	  如需要請將此記錄下了.
-	  當畫面重整將不再重新顯示.</p>
-	  <pre><code class="js-subscription-json"></code></pre>
-	</section>
+		<section class="subscription-details js-subscription-details is-invisible">
+		<pre><code> 
+   <font id ="Tip" color="red"><p></font>
+   <font id ="endpoint" color="blue"><p></font>
+   <font id ="expirationTime" color="blue"><p></font>
+   <font id ="p256dh" color="blue"><p></font>
+   <font id ="auth" color="blue"><p></font>
+		</code></pre>
+		</section>
+		
     </main>
-	
-	
-	<div id="status"></div>
-	<!--FB Root-->
-	<div id="fb-root"></div>
+
   </body>
 </html>
 <script>

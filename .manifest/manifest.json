@@ -2,7 +2,8 @@
 {  
 
   "short_name": "PWA",  
-  "name": "PWA 訂閱推播測試",  
+  "name": "PWA 訂閱推播測試", 
+  "gcm_sender_id": "732927865137",
   "start_url": "/",  
   "icons": [  
     {  

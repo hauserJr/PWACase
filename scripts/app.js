@@ -1,11 +1,12 @@
 /*https://web-push-codelab.appspot.com/*/
 let NoSup = false;
 if('serviceWorker' in navigator && 'PushManager' in window) {  
-navigator.serviceWorker.register('/service-worker.js')
+
+	navigator.serviceWorker.register('/service-worker.js')
 	.then(function(swReg) { 
 		console.log('Service Worker Registered' ,swReg); 
 		swRegistration = swReg;
-		
+		$('#Welbcome').attr('src','/images/EnterMes/welcome_svg.svg');
 	}).catch(function(error) {
 		console.error('Service Worker Error', error);
 	});
@@ -31,7 +32,7 @@ function statusChangeCallback(response) {
 	  // Logged into your app and Facebook.
 	  testAPI();
 	} else {
-	  LogoutFB();
+	  FBLogoutStatus_Btn();
 	  // The person is not logged into your app or we are unable to tell.
 	  //document.getElementById('status').innerHTML = '利用此登入' ;
 	}
@@ -75,24 +76,13 @@ window.fbAsyncInit = function() {
 function LoginFB() {
 	FB.login(function(response) {
 	  if (response.status === 'connected') {
-		  testAPI();
-		  
+		  testAPI();	  
 	  } else {
 		// The person is not logged into this app or we are unable to tell. 
 	  }
 	},{scope: 'email'});
 }
-function LogoutFB() {
-	$('#LoginStatus').text('目前登入狀態：未登入');
-	$('#btn1').attr('onclick', 'LoginFB()'); 
-	$('#btn1').text('Login FB');
-	
-	//disabled subscribe
-	$('#SubscribeStatus').text('如欲使用推播功能,請登入FB後進行訂閱.');
-	$('#btn2').attr('onclick', ''); 
-	$('#btn2').addClass('disabled'); 
-}
-  
+
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -109,11 +99,11 @@ function testAPI() {
 	FB.api('/me?fields=id,name,email', function(response) {
 	  console.log('Successful login for: ' + response.email);
 	  //切換按鈕
-	  $('#LoginStatus').text('目前登入狀態：已登入');
-	  $('#btn1').attr('onclick', 'FB.logout();LogoutFB();'); 
-	  $('#btn1').text('Logout FB');
+	  FBLoginStatus_Btn();
 	  //
+	  alert(response.name + '(' + response.email + ')' + '歡迎登入');
 	  initialiseUI();
+
 	});
 }
 
@@ -122,7 +112,7 @@ function testAPI() {
 /**Push Notifications codelab**/
 'use strict';
 
-const applicationServerPublicKey = 'BG-xv0VwfUuAiql4SOPWcTSSWb1dQ20J1NIWkkevm6r2qFNQ1oRVZxlVlvQZd2lf0xoDLgGeKD9gR6sBUQPuMak';
+const applicationServerPublicKey = 'BEnZT1m8TXAgde4uZfcwrs6rorswSBQOFCYdsBrMD8jJ5HhWp0GBeO0RggGtl9uj6WCimEdaxPKw56vY1lpJ7WU';
 const pushButton = document.querySelector('.js-push-btn');
 let isSubscribed = false;
 let swRegistration = null;
@@ -146,16 +136,6 @@ function urlB64ToUint8Array(base64String) {
 https://developers.google.com/web/fundamentals/getting-started/codelabs/push-notifications/
 */
 
-function unsubscribe(){
-	$('#btn2').text('按此取消訂閱');
-	$('#btn2').removeClass('disabled');
-	$('#btn2').attr('onclick','unsubscribeUser();');
-}
-function subscribe(){
-	$('#btn2').text('訂閱');
-	$('#btn2').removeClass('disabled');
-	$('#btn2').attr('onclick','subscribeUser();');
-}
 function initialiseUI() {	
 	try {	
 		if (isSubscribed) {
@@ -200,15 +180,15 @@ function updateBtn() {
 	console.log(isSubscribed);
 
   if (NoSup){
-	  $('#SubStatus').text('目前訂閱狀態：不支援推播');
+	  $('#SubStatus').text('網站訂閱狀態：不支援推播');
   } else {
 	  if (isSubscribed && !NoSup) {
 		unsubscribe();
-		$('#SubStatus').text('目前訂閱狀態：已訂閱');
+		$('#SubStatus').text('網站訂閱狀態：已訂閱');
     //pushButton.textContent = 'Disable Push Messaging';
 	  } else {
 		subscribe();
-		$('#SubStatus').text('目前訂閱狀態：未訂閱');
+		$('#SubStatus').text('網站訂閱狀態：未訂閱');
 		//pushButton.textContent = 'Enable Push Messaging';
 	  }
   }
@@ -252,22 +232,71 @@ function unsubscribeUser() {
 
     console.log('User is unsubscribed.');
     isSubscribed = false;
-
+	
     updateBtn();
   });
 }
 
 function updateSubscriptionOnServer(subscription) {
   // TODO: Send subscription to application server
-
-  const subscriptionJson = document.querySelector('.js-subscription-json');
+  
+  //const subscriptionJson = document.querySelector('.js-subscription-json');
   const subscriptionDetails =
     document.querySelector('.js-subscription-details');
 
   if (subscription) {
-    subscriptionJson.textContent = JSON.stringify(subscription);
+	var SubcribeJson = JSON.parse(JSON.stringify(subscription));
+	PushUserInfo(SubcribeJson);
+    //subscriptionJson.textContent = JSON.stringify(subscription);
     subscriptionDetails.classList.remove('is-invisible');
   } else {
     subscriptionDetails.classList.add('is-invisible');
   }
+}
+
+
+/***UI status change***/
+function unsubscribe(){
+	$('#btn2').text('取消訂閱');
+	$('#btn2').removeClass('disabled');
+	$('#btn2').attr('onclick','unsubscribeUser();');
+}
+function subscribe(){
+	$('#btn2').text('訂閱');
+	$('#btn2').removeClass('disabled');
+	$('#btn2').attr('onclick','subscribeUser();');
+	disablePushUserInfo();
+}
+
+function FBLoginStatus_Btn(){
+  $('#LoginStatus').text('目前登入狀態：已登入');
+  $('#btn1').attr('onclick', 'FB.logout();FBLogoutStatus_Btn();'); 
+  $('#connectionStr').remove();
+  $('#btn1').attr('src','/images/FB/FB_logout_svg.svg');
+}
+function FBLogoutStatus_Btn(){
+	$('#LoginStatus').text('目前登入狀態：未登入');
+	$('#btn1').attr('onclick', 'LoginFB()'); 
+	$('#connectionStr').remove();
+    $('#btn1').attr('src','/images/FB/FB_login_svg.svg');
+	
+	//disabled subscribe
+	$('#btn2').text('如欲使用推播功能,請登入FB後進行訂閱.');
+	$('#btn2').attr('onclick', ''); 
+	$('#btn2').addClass('disabled'); 
+}
+function PushUserInfo (SubcribeInfo){
+	$('#Tip').text('訂閱將取得訂閱資訊,如需要請將此記錄下了,當畫面重整將不再重新顯示.');
+	$('#endpoint').text('endpoint：'+SubcribeInfo.endpoint);
+	$('#expirationTime').text('expirationTime：'+SubcribeInfo.expirationTime);
+	$('#p256dh').text('p256dh：'+SubcribeInfo.keys.p256dh);
+	$('#auth').text('auth：'+SubcribeInfo.keys.auth);
+}
+
+function disablePushUserInfo (){
+	$('#Tip').text('');
+	$('#endpoint').text('');
+	$('#expirationTime').text('');
+	$('#p256dh').text('');
+	$('#auth').text('');
 }

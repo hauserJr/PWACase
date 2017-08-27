@@ -24,12 +24,16 @@ var filesToCache = [
 	 '/scripts/bootstrap.min.js',
   '/styles//bootstrap.min.css',
   '/images/Logo/ZMH.svg',
+  '/images/EnterMes/welcome_svg.svg',
+  '/images/EnterMes/welcome_back_svg.svg',
+  
 ];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
+	  cache.add('/images/EnterMes/welcome_back_svg.svg')
       console.log('[ServiceWorker] Caching app shell');
       return cache.addAll(filesToCache);
     })
@@ -63,7 +67,9 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
+  const urlCache = new URL(e.request.url);
   var dataUrl = 'https://query.yahooapis.com/v1/public/yql';
+    
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh
@@ -78,6 +84,12 @@ self.addEventListener('fetch', function(e) {
           cache.put(e.request.url, response.clone());
           return response;
         });
+      })
+    );
+  } else if (urlCache == 'https://pwa-test.asuscomm.com/images/EnterMes/welcome_svg.svg'){
+		e.respondWith(
+		caches.match('https://pwa-test.asuscomm.com/images/EnterMes/welcome_back_svg.svg').then(function(response) {
+        return response || fetch(e.request);
       })
     );
   } else {
@@ -115,6 +127,6 @@ self.addEventListener('notificationclick', function(event) {
   event.notification.close();
 
   event.waitUntil(
-    clients.openWindow('https://developers.google.com/web/')
+    clients.openWindow('https://pwa-test.asuscomm.com')
   );
 });
