@@ -114,8 +114,8 @@ self.addEventListener('push', function(event) {
   const title = 'Hi';
   const options = {
     body: `"${event.data.text()}"`,
-    icon: 'images/push-icon.png',
-    badge: 'images/push-badge.png'
+    icon: 'images/Notice_Icon.png',
+    badge: 'images/Notice_Icon.png'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
