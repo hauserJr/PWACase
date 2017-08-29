@@ -1,8 +1,11 @@
 # PWACase
 ### 關於Progressive Web App相關資料網站
 > 首次建立PWA的準備及範例 [Progressive Web App Example](https://developers.google.com/web/fundamentals/getting-started/codelabs/your-first-pwapp/?hl=zh-tw) 
+
 > 關於Service-Worker [Google：Service Workers: an Introduction](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers?hl=zh-tw)
+
 > 如何在localhost建立推播功能 [Push Notifications](https://developers.google.com/web/fundamentals/getting-started/codelabs/push-notifications/)
+
 > 用於測試推播的網站 [Push Server example](https://web-push-codelab.appspot.com/)
 > 
 ### 準備及須知事項
@@ -147,7 +150,9 @@ self.addEventListener('fetch', function(e) {
 只要做到以下的步驟即可
 
 >1.首先我們已經在App.js內檢查裝置是否有支援推播了，
+
 >2.再來用戶必須在裝置上同意通知訊息的接收，
+
 >3.接著依靠Push Server推送訊息到Client就可以了。
 
 #### 那麼該如何實作訂閱呢？
