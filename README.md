@@ -219,10 +219,14 @@ self.addEventListener('notificationclick', function(event) {
 
 * 此處要做的事情只有下列幾件：
     1.設定動作監聽：`self.addEventListener('push', function(event) ..`
+    
     2.設定通知標題：`const title = 'Hi';`
+    
     3.顯示接收內容：`"${event.data.text()}"`
+    
     4.最後將訊息顯示至畫面：
     `event.waitUntil(self.registration.showNotification(title, options));`
+    
     5.Click後的跳轉URL設定：`clients.openWindow('https://pwa-test.asuscomm.com')`
 
 #### 開始推播
