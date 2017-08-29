@@ -10,9 +10,13 @@
 > 
 ### 準備及須知事項
 > 1.需要Chrome 52 或以上 
+
 > 2.HTML、CSS和JavaScript基礎認知
+
 > 3.架設Apache Server
+
 > 4.申請SSL(SSL For Free)
+
 > 5.大多數功能並不支援Apple裝置 <font size="1">~~Google表示：Apple?懶得理你~~ [2017/02/06新聞]( https://www.pcmarket.com.hk/2017/02/06/android-chrome%E5%B0%87%E6%B7%B1%E5%8C%96progressive-web-app%E6%94%AF%E6%8F%B4/)</font>
 
     注意：
