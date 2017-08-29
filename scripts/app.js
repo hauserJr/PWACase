@@ -242,9 +242,10 @@ function updateSubscriptionOnServer(subscription) {
   //const subscriptionJson = document.querySelector('.js-subscription-json');
   const subscriptionDetails =
     document.querySelector('.js-subscription-details');
-
+	console.log(JSON.stringify(subscription));
   if (subscription) {
 	var SubcribeJson = JSON.parse(JSON.stringify(subscription));
+	
 	PushUserInfo(SubcribeJson);
     //subscriptionJson.textContent = JSON.stringify(subscription);
     subscriptionDetails.classList.remove('is-invisible');
