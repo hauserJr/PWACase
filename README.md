@@ -9,6 +9,8 @@
 > 用於測試推播的網站 [Push Server example](https://web-push-codelab.appspot.com/)
 
 > 自己寫的推播Server [Github PushServer](https://github.com/hauserJr/PuseServer)
+
+> 如何利用Xampp架設SSL說明 [Github README](https://github.com/hauserJr/Xampp_SSL)
 ### 準備及須知事項
 > 1.需要Chrome 52 或以上 
 
