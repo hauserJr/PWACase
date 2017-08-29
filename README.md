@@ -218,6 +218,7 @@ self.addEventListener('notificationclick', function(event) {
 ```
 
 * 此處要做的事情只有下列幾件：
+
     1.設定動作監聽：`self.addEventListener('push', function(event) ..`
     
     2.設定通知標題：`const title = 'Hi';`
