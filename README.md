@@ -137,9 +137,8 @@ self.addEventListener('fetch', function(e) {
 
     <font size="3" color="red">在fetch會檢查已被Cache的檔案，如果檔案存在則會直接提供使用</font>
 
-<font size="3">透過登入時的圖片切換可以了解Service Worker如何利用Cache處理離線操作及加速載入的原理，
-當然Service Worker還有activate、Push etc. 可以提供使用於不同情境。
-</font>
+#### 透過登入時的圖片切換可以了解Service Worker如何利用Cache處理離線操作及加速載入的原理，當然Service Worker還有activate、Push etc. 可以提供使用於不同情境。
+
 ----
 
 ### <a id="Push">＊如何接收推播訊息？</a>
