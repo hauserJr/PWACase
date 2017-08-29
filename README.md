@@ -7,7 +7,8 @@
 > 如何在localhost建立推播功能 [Push Notifications](https://developers.google.com/web/fundamentals/getting-started/codelabs/push-notifications/)
 
 > 用於測試推播的網站 [Push Server example](https://web-push-codelab.appspot.com/)
-> 
+
+> 自己寫的推播Server [Github PushServer](https://github.com/hauserJr/PuseServer)
 ### 準備及須知事項
 > 1.需要Chrome 52 或以上 
 
@@ -55,7 +56,7 @@
 下方將會以本範例內的程式碼來說明各階段做了哪些事情。
 ### 在網頁載入時app.js做了哪些事情呢？
 ---
-``` JavaScript=
+``` JavaScript
 if('serviceWorker' in navigator && 'PushManager' in window) {  
 	navigator.serviceWorker.register('/service-worker.js')
 	.then(function(swReg) { 
@@ -83,7 +84,7 @@ if('serviceWorker' in navigator && 'PushManager' in window) {
 * 裝置如支援功能則會載入首次登入的圖片。
 ```$('#Welbcome').attr('src','/images/EnterMes/welcome_svg.svg');```
 ### 在service-worker.js又處理了什麼呢？
-``` JavaScript=
+``` JavaScript
 var dataCacheName = 'PWACase-v2';
 var cacheName = 'PWACase-v2';
 var filesToCache = [
@@ -103,7 +104,7 @@ var filesToCache = [
 * 定義cache Name，之後要取得cache時需指定Cache Name。
 * 定義哪些檔案是要被Cache的。
 
-```javascript=
+```javascript
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
   e.waitUntil(
@@ -115,7 +116,7 @@ self.addEventListener('install', function(e) {
   );
 });
 
-...
+...JavaScript
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
