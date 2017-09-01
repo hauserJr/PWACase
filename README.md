@@ -251,7 +251,7 @@ self.addEventListener('notificationclick', function(event) {
 * 貼上後發送，網站將會收到訊息。
 ![](https://i.imgur.com/ULIbKRb.png)
 
-* 也可以自己寫Push Server發送訊息哦，有興趣可以參考(Push Server)[https://github.com/hauserJr/PuseServer#push-server]
+* 也可以自己寫Push Server發送訊息哦，有興趣可以參考[Push Server](https://github.com/hauserJr/PuseServer#push-server)
 ----
 ### 如果可以成功收到訊息代表此範例已經完成囉。
 ### 如果無法成功接收訊息，請查看Chrome F12 主控台的訊息輸出Debug哦！
